@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>card-banki</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="asset/stylesheet.css">
+</head>
+
+<body class="bg-dark">
+    <div class="container  mt-5">
+        <div class="row">
+            <div class="col-7 text-white">
+                <table class="table table-striped table-hovered text-white">
+                    <tr>
+                        <td class="text-white">Card Number</td>
+                        <td><input type="text" id="cardnum"></td>
+                    </tr>
+                    <tr>
+                        <td> CVV2 : </td>
+                        <td><input type="text" id="cv">
+                    </tr>
+                    <tr>
+                        <td class="text-white">Day:</td>
+                        <td><input type="text" id="day"></td>
+                        <td class="text-white">Month :</td>
+                        <td><input type="text" id="months"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row mt-5 ">
+            <div class="col-8 border bg-info mycard">
+                <h1 class="text-center mt-5 mrs">MORA BANK</h1>
+                <h2 class="text-center mt-5 text-white mrs2" id="showcardnumbers"></h2>
+                <div class="d-flex mt-5 mrs2">
+                    <h3 class="px-5 oncard">CVV2 :</h3>
+                    <h3 id="cvv2" class="text-white"></h3>
+                    <h3 class="mx-4 oncard">Expire Date :</h3>
+                    <h4 class="mx-2 oncard">Day :</h4>
+                    <h4 id="days" class="mx-2 text-white"></h4>
+                    <h4 class="oncard">Month:</h4>
+                    <h4 id="month" class="mx-2 text-white"></h4>
+                </div>
+
+                <h3 id="cvv2" class=" mt-5 mb-5 mrs text-center">MOHAMMAD RASOUL SALEM</h3>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+    let months = document.getElementById('months')
+    let month = document.getElementById('month')
+    months.addEventListener('input', (e) => {
+        temp = e.target.value
+        month.innerHTML = temp
+        if ((e.target.value).length > 2) {
+            alert('must be 2 character')
+        }
+        if (((e.target.value).length > 2)) {
+            let txt = (e.target.value).substring(0, 2)
+            months.value = txt
+            txt = month.innerText
+            document.getElementById('cardnum').focus()
+
+
+        }
+    })
+
+    let day = document.getElementById('day')
+    let days = document.getElementById('days')
+    day.addEventListener('input', (e) => {
+        temp = e.target.value
+        days.innerHTML = temp
+        if ((e.target.value).length > 2) {
+            alert('must be 2 character')
+        }
+        if (((e.target.value).length > 2)) {
+            let txt = (e.target.value).substring(0, 2)
+            day.value = txt
+            txt = days.innerText
+            months.focus()
+
+        }
+    })
+    let cv = document.getElementById('cv')
+    let cvv2 = document.getElementById('cvv2')
+    cv.addEventListener('input', (e) => {
+            temp = e.target.value
+            cvv2.innerHTML = temp
+            if ((e.target.value).length > 4) {
+                alert('must be 4 character')
+
+            }
+            if (((e.target.value).length > 4)) {
+                let txt = (e.target.value).substring(0, 4)
+                txt = cvv2.innerText
+                day.focus()
+            }
+
+        }
+
+    )
+    let cardnum = document.getElementById('cardnum')
+    let showcardnumber = document.getElementById('showcardnumbers')
+    cardnum.addEventListener('input', (e) => {
+        temp = e.target.value
+        temp = temp.substring(temp.length - 1, temp.length)
+        showcardnumber.innerHTML += temp
+        if (
+            ((e.target.value).length == 4) ||
+            ((e.target.value).length == 8) ||
+            ((e.target.value).length == 12)
+        ) {
+            showcardnumber.innerHTML += " - "
+        }
+        if (((e.target.value).length >= 16)) {
+
+            let txt = (e.target.value).substring(0, 16)
+            cardnum.value = txt
+            txt = showcardnumber.innerText
+            let test = txt.substring(0, 25)
+            showcardnumber.innerHTML = test
+            cv.focus()
+
+        }
+    })
+</script>
+
+</html>
